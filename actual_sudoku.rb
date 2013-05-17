@@ -1,9 +1,24 @@
 class Sudoku
   def initialize(board_string)
+    @board = []
+    board_string.split(//).each {|num| num.to_i}.each_slice(9) { |row| @board << row  }
+    @grid_box = [0,0,0,3,0,6,3,0,3,3,3,6,6,0,6,3,6,6]
+    @possible_numbers = %w{1 2 3 4 5 6 7 8 9}
+
   end
 
-  def solve!
-    # Solves the board
+
+  def is_solved?
+    @unsolved_count = @board.flatten.select { |num| num.to_i == 0}
+    if @unsolved_count == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def print_board
+    @board.each { |row| puts row.join(" ") }
   end
 
   # Returns a string representing the current state of the board
@@ -11,9 +26,18 @@ class Sudoku
   # if you are.
   def board
     # Returns a printed copy of the board
-  end
+  end 
 
-  def check_grid(row=0, col=0, num)
+  def fill_empty_cells
+
+    @board.each do |row|
+      row.map {}
+
+
+  end
+  def check_grid(row=0, col=1)
+
+
     # if row, col are end of array & num == 9 return @board
     # counter += 1
     # until counter == 3
